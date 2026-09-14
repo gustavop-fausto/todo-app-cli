@@ -28,13 +28,9 @@ var removeCmd = &cobra.Command{
 			return err
 		}
 
-		var removedTasks []string
-		if removeAll {
-			tasks = []task.Task{}
-		} else {
-			if tasks, removedTasks, err = removeTaskByID(tasks, args); err != nil {
-				return err
-			}
+		tasks, removedTasks, err := runRemove(tasks, args)
+		if err != nil {
+			return err
 		}
 
 		if err = storage.Save(tasks); err != nil {
@@ -49,6 +45,21 @@ var removeCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(removeCmd)
 	removeCmd.Flags().BoolVarP(&removeAll, "all", "a", false, "Remove all tasks")
+}
+
+func runRemove(tasks []task.Task, args []string) ([]task.Task, []string, error){
+	var removedTasks []string
+
+	if removeAll {
+		tasks = []task.Task{}
+	} else {
+		var err error
+		if tasks, removedTasks, err = removeTaskByID(tasks, args); err != nil {
+			return nil, nil, err
+		}
+	}
+
+	return tasks, removedTasks, nil
 }
 
 func removeTaskByID(tasks []task.Task, args []string) ([]task.Task, []string, error){
