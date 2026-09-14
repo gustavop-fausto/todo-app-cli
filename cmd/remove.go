@@ -73,6 +73,11 @@ func removeTaskByID(tasks []task.Task, args []string) ([]task.Task, []string, er
 }
 
 func printingRemovedTasks(removedTasks []string) {
+	if len(removedTasks) == 0 {
+		fmt.Printf("🗑️  Todas as tarefas foram removidas com sucesso!\n")
+		return 
+	}
+
 	for _, value := range removedTasks {
 		fmt.Printf("🗑️  Tarefa removida: \"%s\"\n", value)
 	}
