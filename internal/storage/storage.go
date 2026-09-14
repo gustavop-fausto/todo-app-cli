@@ -16,7 +16,7 @@ func GetFilePath() (string, error) {
 		return "", fmt.Errorf("erro ao tentar buscar path do home do usuário: %w", err)
 	}
 
-	path := filepath.Join(home, "todo-app")
+	path := filepath.Join(home, ".todo-cli")
 
 	// Cria se não existir o diretório, não faz nada se já existir
 	err = os.MkdirAll(path, 0755)
@@ -50,7 +50,7 @@ func Load() ([]task.Task, error) {
 		return nil, fmt.Errorf("erro ao tentar ler arquivo json: %w", err)
 	}
 
-	defer file.Close()
+	defer func() { _ = file.Close() }()
 
 	// Pegando informações para poder saber se o arquivo é vazio
 	fileInfo, err := file.Stat()
