@@ -21,15 +21,17 @@ func Add(tasks []Task, todo string) []Task {
 	return tasks
 }
 
-func Remove(tasks []Task, id int) ([]Task, error) {
+func Remove(tasks []Task, id int) ([]Task, string, error) {
 	for i := range tasks {
 		if tasks[i].ID == id {
+			taskRemoved := tasks[i].Todo
 			tasks = append(tasks[:i], tasks[i+1:]...)
-			return tasks, nil
+
+			return tasks, taskRemoved, nil
 		}
 	}
 
-	return nil, fmt.Errorf("erro id não encontrado")
+	return nil, "", fmt.Errorf("erro id não encontrado")
 }
 
 func MarkAsDone(tasks []Task, id int) ([]Task, error){
