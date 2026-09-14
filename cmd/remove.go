@@ -28,6 +28,10 @@ var removeCmd = &cobra.Command{
 			return err
 		}
 
+		if len(tasks) == 0 {
+			return fmt.Errorf("🗑️ Não há nenhuma task para remover 🗑️")
+		}
+
 		tasks, removedTasks, err := runRemove(tasks, args)
 		if err != nil {
 			return err
@@ -47,7 +51,7 @@ func init() {
 	removeCmd.Flags().BoolVarP(&removeAll, "all", "a", false, "Remove all tasks")
 }
 
-func runRemove(tasks []task.Task, args []string) ([]task.Task, []string, error){
+func runRemove(tasks []task.Task, args []string) ([]task.Task, []string, error) {
 	var removedTasks []string
 
 	if removeAll {
@@ -62,7 +66,7 @@ func runRemove(tasks []task.Task, args []string) ([]task.Task, []string, error){
 	return tasks, removedTasks, nil
 }
 
-func removeTaskByID(tasks []task.Task, args []string) ([]task.Task, []string, error){
+func removeTaskByID(tasks []task.Task, args []string) ([]task.Task, []string, error) {
 	var removedTasks []string
 	var taskRemoved string
 
@@ -85,8 +89,8 @@ func removeTaskByID(tasks []task.Task, args []string) ([]task.Task, []string, er
 
 func printingRemovedTasks(removedTasks []string) {
 	if len(removedTasks) == 0 {
-		fmt.Printf("🗑️  Todas as tarefas foram removidas com sucesso!\n")
-		return 
+		fmt.Printf("🗑️  Todas as tarefas foram removidas com sucesso! 🗑️ ")
+		return
 	}
 
 	for _, value := range removedTasks {

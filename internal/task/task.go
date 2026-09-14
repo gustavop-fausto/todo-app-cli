@@ -34,7 +34,7 @@ func Remove(tasks []Task, id int) ([]Task, string, error) {
 	return nil, "", fmt.Errorf("erro id não encontrado")
 }
 
-func MarkAsDone(tasks []Task, id int) ([]Task, error){
+func MarkAsDone(tasks []Task, id int) ([]Task, error) {
 	for i := range tasks {
 		if tasks[i].ID == id {
 			tasks[i].Done = true

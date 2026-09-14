@@ -11,7 +11,7 @@ import (
 var addCmd = &cobra.Command{
 	Use:   "add",
 	Short: "Adding new task to the list.",
-	Args: cobra.MinimumNArgs(1),
+	Args:  cobra.MinimumNArgs(1),
 
 	RunE: func(cmd *cobra.Command, args []string) error {
 		tasks, err := storage.Load()

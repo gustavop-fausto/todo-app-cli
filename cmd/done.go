@@ -31,7 +31,7 @@ var doneCmd = &cobra.Command{
 	},
 }
 
-func markAsDoneByID(tasks []task.Task, args []string) ([]task.Task, error){
+func markAsDoneByID(tasks []task.Task, args []string) ([]task.Task, error) {
 	for _, value := range args {
 		id, err := strconv.Atoi(value)
 		if err != nil {
