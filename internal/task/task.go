@@ -32,15 +32,15 @@ func Remove(tasks []Task, id int) ([]Task, error) {
 	return nil, fmt.Errorf("erro id não encontrado")
 }
 
-func MarkAsDone(tasks []Task, id int) error {
+func MarkAsDone(tasks []Task, id int) ([]Task, error){
 	for i := range tasks {
 		if tasks[i].ID == id {
 			tasks[i].Done = true
-			return nil
+			return tasks, nil
 		}
 	}
 
-	return fmt.Errorf("erro id não encontrado")
+	return nil, fmt.Errorf("erro id não encontrado")
 }
 
 func List(tasks []Task) {
@@ -48,13 +48,16 @@ func List(tasks []Task) {
 
 	t.SetHeaders("ID", "Task", "Done")
 	t.SetHeaderStyle(table.StyleBold)
+
 	t.SetLineStyle(table.StyleBrightBlue)
 	t.SetBorders(true)
 	t.SetDividers(table.UnicodeRoundedDividers)
 
+	t.SetAlignment(table.AlignLeft, table.AlignLeft, table.AlignCenter)
+
 	for _, value := range tasks {
 		coloredText := coloringTasks(value.Todo)
-		t.AddRow(strconv.Itoa(value.ID), tml.Sprintf(coloredText), strconv.FormatBool(value.Done))
+		t.AddRow(strconv.Itoa(value.ID), tml.Sprintf(coloredText), isDone(value.Done))
 	}
 
 	t.Render()
@@ -62,12 +65,19 @@ func List(tasks []Task) {
 
 func coloringTasks(todo string) string {
 	colors := []string{
-		"red", "green", "yellow", 
-	"magenta", "white",
+		"red", "green", "yellow",
+		"magenta", "white",
 	}
 
 	sortedColor := colors[rand.Intn(len(colors))]
 	return fmt.Sprintf("<%s>%s<%s>", sortedColor, todo, sortedColor)
+}
+
+func isDone(isDone bool) string {
+	if isDone {
+		return "✅"
+	}
+	return "❌"
 }
 
 func nextID(tasks []Task) int {

@@ -5,22 +5,40 @@ package cmd
 
 import (
 	"fmt"
+	"strconv"
 
+	"github.com/gustavop-fausto/todo-app/internal/storage"
+	"github.com/gustavop-fausto/todo-app/internal/task"
 	"github.com/spf13/cobra"
 )
 
 // doneCmd represents the done command
 var doneCmd = &cobra.Command{
 	Use:   "done",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "Mark the task as done",
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("done called")
+	RunE: func(cmd *cobra.Command, args []string) error {
+		tasks, err := storage.Load()
+		if err != nil {
+			return fmt.Errorf("erro ao carregar tasks: %w", err)
+		}
+
+		id, err := strconv.Atoi(args[0])
+		if err != nil {
+			return fmt.Errorf("erro id inválido: %w", err)
+		}
+
+		tasks, err = task.MarkAsDone(tasks, id)
+		if err != nil {
+			return fmt.Errorf("erro id inválido: %w", err)
+		}
+
+		err = storage.Save(tasks)
+		if err != nil {
+			return fmt.Errorf("erro ao adicionar task: %w", err)
+		}
+
+		return nil
 	},
 }
 
