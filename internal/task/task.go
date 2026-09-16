@@ -5,19 +5,28 @@ import (
 	"math/rand"
 	"os"
 	"strconv"
+	"time"
 
 	"github.com/aquasecurity/table"
 	"github.com/liamg/tml"
+	"github.com/mergestat/timediff"
 )
 
 type Task struct {
-	ID   int    `json:"id"`
-	Todo string `json:"todo"`
-	Done bool   `json:"done"`
+	ID        int    `json:"id"`
+	Todo      string `json:"todo"`
+	Done      bool   `json:"done"`
+	CreatedAt time.Time `json:"createdAt"`
 }
 
 func Add(tasks []Task, todo string) []Task {
-	tasks = append(tasks, Task{ID: nextID(tasks), Todo: todo, Done: false})
+	tasks = append(tasks, Task{
+		ID: nextID(tasks), 
+		Todo: todo, 
+		Done: false, 
+		CreatedAt: time.Now().Add(-10 * time.Second), 
+	})
+
 	return tasks
 }
 
@@ -48,7 +57,7 @@ func MarkAsDone(tasks []Task, id int) ([]Task, error) {
 func List(tasks []Task) {
 	t := table.New(os.Stdout)
 
-	t.SetHeaders("ID", "Task", "Done")
+	t.SetHeaders("ID", "Task", "Done", "Created At")
 	t.SetHeaderStyle(table.StyleBold)
 
 	t.SetLineStyle(table.StyleBrightBlue)
@@ -59,7 +68,7 @@ func List(tasks []Task) {
 
 	for _, value := range tasks {
 		coloredText := coloringTasks(value.Todo)
-		t.AddRow(strconv.Itoa(value.ID), tml.Sprintf(coloredText), isDone(value.Done))
+		t.AddRow(strconv.Itoa(value.ID), tml.Sprintf(coloredText), isDone(value.Done), timediff.TimeDiff(value.CreatedAt))
 	}
 
 	t.Render()
