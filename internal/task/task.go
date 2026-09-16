@@ -13,18 +13,18 @@ import (
 )
 
 type Task struct {
-	ID        int    `json:"id"`
-	Todo      string `json:"todo"`
-	Done      bool   `json:"done"`
+	ID        int       `json:"id"`
+	Todo      string    `json:"todo"`
+	Done      bool      `json:"done"`
 	CreatedAt time.Time `json:"createdAt"`
 }
 
 func Add(tasks []Task, todo string) []Task {
 	tasks = append(tasks, Task{
-		ID: nextID(tasks), 
-		Todo: todo, 
-		Done: false, 
-		CreatedAt: time.Now().Add(-10 * time.Second), 
+		ID:        nextID(tasks),
+		Todo:      todo,
+		Done:      false,
+		CreatedAt: time.Now().Add(-10 * time.Second),
 	})
 
 	return tasks
