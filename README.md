@@ -86,7 +86,7 @@ As tarefas ficam armazenadas em um arquivo JSON no seu diretório home, independ
 - [Cobra](https://github.com/spf13/cobra) — construção da CLI
 - [aquasecurity/table](https://github.com/aquasecurity/table) — renderização da tabela no terminal
 - [liamg/tml](https://github.com/liamg/tml) — cores no terminal
-- [vhs](https://github.com/charmbracelet/vhs) - gifs no terminal
+- [vhs](https://github.com/charmbracelet/vhs) — gifs no terminal
 
 ## 📄 Licença
 
