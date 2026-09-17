@@ -1,20 +1,8 @@
 # 📝 todo-app
 
-Uma CLI simples e direta para gerenciar suas tarefas do dia a dia, construída em **Go** com [Cobra](https://github.com/spf13/cobra).
+Uma CLI simples para gerenciar tarefas do dia a dia, construída em **Go** com [Cobra](https://github.com/spf13/cobra).
 
-```
-$ todo add "Estudar Go" "Revisar Grafos"
-✅ Tarefa adicionada: "Estudar Go"
-✅ Tarefa adicionada: "Revisar PR"
-
-$ todo list
-╭────┬────────────────┬──────╮
-│ ID │      Task      │ Done │
-├────┼────────────────┼──────┤
-│ 1  │ Estudar Go     │  ❌  │
-│ 2  │ Revisar Grafos │  ❌  │
-╰────┴────────────────┴──────╯
-```
+![Preview do todo-app](./assets/preview.gif)
 
 ## ✨ Funcionalidades
 
@@ -28,9 +16,11 @@ $ todo list
 
 ### Pré-requisitos
 
-- [Go](https://go.dev/dl/) 1.27 ou superior instalado
+- Go 1.27 ou superior instalado
 
 ### Compilando a partir do código-fonte
+
+Faça o clone do repositório e faça o build do projeto. Caso queira, use a flag `-o` para nomeáo-lo do jeito que preferir.
 
 ```bash
 git clone https://github.com/gustavop-fausto/todo-app.git
@@ -67,17 +57,18 @@ Exibe todas as tarefas cadastradas em uma tabela, com o status de conclusão de 
 
 ```bash
 todo done 1
+todo done 1 2 3
 ```
 
-Marca a tarefa de ID `1` como concluída.
+Você também pode marcar mais de uma tarefa como concluída de uma vez.
 
 ### Remover tarefas
 
 ```bash
 todo remove 2
-todo remove 2 3 5        # remove várias de uma vez
-todo remove --all         # remove todas as tarefas
-todo remove -a             # forma curta de --all
+todo remove 2 3 5
+todo remove --all
+todo remove -a
 ```
 
 ## 🗂️ Onde os dados são salvos
@@ -87,32 +78,6 @@ As tarefas ficam armazenadas em um arquivo JSON no seu diretório home, independ
 ```
 ~/.todo-cli/data.json
 ```
-
-O arquivo é criado automaticamente na primeira vez que você roda qualquer comando — não é necessário nenhum passo manual de configuração.
-
-## 🏗️ Estrutura do projeto
-
-```
-todo-app/
-├── main.go                    # ponto de entrada
-├── cmd/                        # comandos da CLI (Cobra)
-│   ├── root.go                 # comando raiz
-│   ├── add.go
-│   ├── list.go
-│   ├── done.go
-│   └── remove.go
-└── internal/
-    ├── task/
-    │   └── task.go              # struct Task e regras de negócio
-    └── storage/
-        └── storage.go           # leitura/escrita do arquivo JSON
-```
-
-O projeto segue uma separação simples de responsabilidades:
-
-- **`cmd/`** — só lida com entrada/saída do terminal (parsing de argumentos, flags, mensagens). Não contém lógica de negócio.
-- **`internal/task/`** — regras de negócio puras (adicionar, remover, marcar como concluída), sem saber nada sobre arquivos ou terminal.
-- **`internal/storage/`** — persistência em disco (ler e escrever o JSON), sem saber nada sobre regras de negócio.
 
 ## 🛠️ Tecnologias
 
