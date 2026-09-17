@@ -40,8 +40,8 @@ Isso gera um binário `todo` na pasta atual. Para rodá-lo:
 ### Adicionar tarefas
 
 ```bash
-todo add "Comprar leite"
-todo add "Comprar leite" "Pagar a conta" "Ligar para o dentista"
+todo add "Arrumar a casa"
+todo add "Terminar de arrumar a casa" "Sair com os amigos" "Fazer um cafézinho"
 ```
 
 Você pode adicionar uma ou várias tarefas de uma vez, cada uma como um argumento separado.
@@ -86,6 +86,7 @@ As tarefas ficam armazenadas em um arquivo JSON no seu diretório home, independ
 - [Cobra](https://github.com/spf13/cobra) — construção da CLI
 - [aquasecurity/table](https://github.com/aquasecurity/table) — renderização da tabela no terminal
 - [liamg/tml](https://github.com/liamg/tml) — cores no terminal
+- [vhs](https://github.com/charmbracelet/vhs) - gifs no terminal
 
 ## 📄 Licença
 
