@@ -2,7 +2,6 @@ package task
 
 import (
 	"fmt"
-	"math/rand"
 	"os"
 	"strconv"
 	"time"
@@ -66,21 +65,21 @@ func List(tasks []Task) {
 
 	t.SetAlignment(table.AlignLeft, table.AlignLeft, table.AlignCenter)
 
-	for _, value := range tasks {
-		coloredText := coloringTasks(value.Todo)
+	for i, value := range tasks {
+		coloredText := coloringTasks(value.Todo, i)
 		t.AddRow(strconv.Itoa(value.ID), tml.Sprintf(coloredText), isDone(value.Done), timediff.TimeDiff(value.CreatedAt))
 	}
 
 	t.Render()
 }
 
-func coloringTasks(todo string) string {
+func coloringTasks(todo string, i int) string {
 	colors := []string{
 		"red", "green", "yellow",
 		"magenta", "white",
 	}
 
-	sortedColor := colors[rand.Intn(len(colors))]
+	sortedColor := colors[i%len(colors)]
 	return fmt.Sprintf("<%s>%s<%s>", sortedColor, todo, sortedColor)
 }
 

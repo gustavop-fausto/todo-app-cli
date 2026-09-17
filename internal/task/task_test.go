@@ -95,7 +95,7 @@ func TestRemove(t *testing.T) {
 		{
 			name: "Remover uma task com um id inválido",
 			tasks: []Task{
-				{ID: 1, Todo: "Tarefa 1", Done: false, CreatedAt: createdAt},  
+				{ID: 1, Todo: "Tarefa 1", Done: false, CreatedAt: createdAt},
 				{ID: 2, Todo: "Tarefa 2", Done: false, CreatedAt: createdAt},
 			},
 			remainingTasks: []Task{
