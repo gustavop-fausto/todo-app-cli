@@ -2,7 +2,7 @@
 
 Uma CLI simples para gerenciar tarefas do dia a dia, construída em **Go** com [Cobra](https://github.com/spf13/cobra).
 
-![Preview do todo-app](/home/tavim/todo-app/assets/demo.gif)
+![Preview do todo-app](./assets/demo.gif)
 
 
 ## ✨ Funcionalidades
