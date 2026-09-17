@@ -60,7 +60,7 @@
 Output demo.gif
 
 Set Shell "zsh"
-Set FontSize 18
+Set FontSize 24
 Set Width 1400
 Set Height 500
 
