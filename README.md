@@ -21,7 +21,7 @@ Uma CLI simples para gerenciar tarefas do dia a dia, construída em **Go** com [
 
 ### Compilando a partir do código-fonte
 
-Faça o clone do repositório e faça o build do projeto. Caso queira, use a flag `-o` para nomeáo-lo do jeito que preferir.
+Faça o clone do repositório e logo em seguida o build do projeto. Caso queira, use a flag `-o` para nomeáo-lo do jeito que preferir.
 
 ```bash
 git clone https://github.com/gustavop-fausto/todo-app.git
@@ -29,55 +29,47 @@ cd todo-app
 go build -o todo
 ```
 
-Isso gera um binário `todo` na pasta atual. Para rodá-lo:
+Depois do build, basta rodá-lo:
 
-```bash
-./todo --help
+```go
+./todo
 ```
 
 ## 🚀 Uso
 
 ### Adicionar tarefas
 
-```bash
-todo add "Arrumar a casa"
-todo add "Terminar de arrumar a casa" "Sair com os amigos" "Fazer um cafézinho"
+```go
+./todo add "Fazer um cafézinho"
+./todo add "Fazer um cafézinho" "Sair com os amigos" "Aprender uma música nova no violão"
 ```
 
 Você pode adicionar uma ou várias tarefas de uma vez, cada uma como um argumento separado.
 
 ### Listar tarefas
 
-```bash
-todo list
+```go
+./todo list
 ```
 
 Exibe todas as tarefas cadastradas em uma tabela, com o status de conclusão de cada uma.
 
 ### Marcar como concluída
 
-```bash
-todo done 1
-todo done 1 2 3
+```go
+./todo done 1
+./todo done 1 2 3
 ```
 
 Você também pode marcar mais de uma tarefa como concluída de uma vez.
 
 ### Remover tarefas
 
-```bash
-todo remove 2
-todo remove 2 3 5
-todo remove --all
-todo remove -a
-```
-
-## 🗂️ Onde os dados são salvos
-
-As tarefas ficam armazenadas em um arquivo JSON no seu diretório home, independente de onde você executa o comando:
-
-```
-~/.todo-cli/data.json
+```go
+./todo remove 2
+./todo remove 2 3 5
+./todo remove --all
+./todo remove -a
 ```
 
 ## 🛠️ Tecnologias
@@ -91,7 +83,3 @@ As tarefas ficam armazenadas em um arquivo JSON no seu diretório home, independ
 ## 📄 Licença
 
 Este projeto está sob a licença especificada no arquivo [LICENSE](./LICENSE).
-
----
-
-Feito em Go, por [gustavop-fausto](https://github.com/gustavop-fausto).
