@@ -32,44 +32,44 @@ go build -o todo
 Depois do build, basta rodá-lo:
 
 ```go
-./todo
+./todo --help
 ```
 
 ## 🚀 Uso
 
 ### Adicionar tarefas
 
-```go
-./todo add "Fazer um cafézinho"
-./todo add "Fazer um cafézinho" "Sair com os amigos" "Aprender uma música nova no violão"
+```bash
+todo add "Fazer um cafézinho"
+todo add "Fazer um cafézinho" "Sair com os amigos" "Aprender uma música nova no violão"
 ```
 
 Você pode adicionar uma ou várias tarefas de uma vez, cada uma como um argumento separado.
 
 ### Listar tarefas
 
-```go
-./todo list
+```bash
+todo list
 ```
 
 Exibe todas as tarefas cadastradas em uma tabela, com o status de conclusão de cada uma.
 
 ### Marcar como concluída
 
-```go
-./todo done 1
-./todo done 1 2 3
+```bash
+todo done 1
+todo done 1 2 3
 ```
 
 Você também pode marcar mais de uma tarefa como concluída de uma vez.
 
 ### Remover tarefas
 
-```go
-./todo remove 2
-./todo remove 2 3 5
-./todo remove --all
-./todo remove -a
+```bash
+todo remove 2
+todo remove 2 3 5
+todo remove --all
+todo remove -a
 ```
 
 ## 🛠️ Tecnologias
